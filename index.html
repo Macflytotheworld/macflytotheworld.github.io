@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MacFlyToTheWorld</title>
+  <meta charset="UTF-8" />
+  <title>MacFlyToTheWorld Scheduler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: -apple-system, system-ui, sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: #fafafa;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p {
+      max-width: 480px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .btn-tiktok {
+      background: #000;
+      color: #fff;
+    }
+    .links {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .links a {
+      margin: 0 8px;
+      color: #0070f3;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>MacFlyToTheWorld</h1>
-  <p>Website ativo com GitHub Pages.</p>
+  <h1>MacFlyToTheWorld Scheduler</h1>
+  <p>
+    Simple TikTok automation tool that lets you log in with TikTok and
+    schedule videos through an external workflow (n8n).
+  </p>
+
+  <!-- BOTÃO LOGIN COM TIKTOK -->
+  <a
+    class="btn btn-tiktok"
+    href="https://www.tiktok.com/v2/auth/authorize/?client_key=awbvguw4gbq52o74&response_type=code&scope=user.info.basic,video.upload&redirect_uri=https%3A%2F%2Fmacflytotheworld.github.io%2Fcallback.html&state=macfly-demo-123"
+  >
+    Login with TikTok
+  </a>
+
+  <div class="links">
+    <a href="https://macflytotheworld.github.io/privacy.html" target="_blank">Privacy Policy</a>
+    <a href="https://macflytotheworld.github.io/terms.html" target="_blank">Terms of Service</a>
+  </div>
 </body>
 </html>
