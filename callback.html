@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MacFlyToTheWorld – Callback</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authorize with TikTok</title>
 </head>
-<body style="font-family: -apple-system, system-ui, sans-serif; padding: 40px;">
-  <h1>Login concluído</h1>
-  <p>
-    TikTok authorization finished.<br />
-    In the real automation, this page just indicates that the tool has
-    received the authorization code and can now upload videos on your behalf.
-  </p>
+<body>
+  <h1>Authorize MacFlyToTheWorld Scheduler</h1>
+  <p>Click the button below to log in with TikTok and authorize video upload.</p>
+
+  <a
+    href="https://www.tiktok.com/v2/auth/authorize/?client_key=awbvguw4gbq52o74&response_type=code&scope=user.info.basic&redirect_uri=https%3A%2F%2Fmacflytotheworld.github.io%2Fcallback.html&state=macfly-test-123"
+  >
+    <button>Login with TikTok</button>
+  </a>
 </body>
 </html>
