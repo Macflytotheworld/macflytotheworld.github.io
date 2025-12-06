@@ -1,23 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Macfly Callback</title>
+  <title>Macfly Authorization Callback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 40px;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .code-box {
+      background: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+      word-break: break-all;
+    }
+  </style>
 </head>
 <body>
-  <h1>Authorization Result</h1>
-  <p id="result">Waiting...</p>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const state = params.get("state");
+<div class="container">
+  <h1>Macfly TikTok Authorization</h1>
+  <p>O teu código de autorização está aqui:</p>
 
-    document.getElementById("result").innerHTML = `
+  <div class="code-box" id="codeBox">A carregar…</div>
+
+  <p style="margin-top:20px;">
+    Copia este código e envia-me no chat para continuarmos a gerar o Access Token.
+  </p>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  const state = params.get("state");
+
+  if (code) {
+    document.getElementById("codeBox").innerHTML = `
       <strong>CODE:</strong> ${code}<br>
-      <strong>STATE:</strong> ${state}<br><br>
-      Copia este código e envia para o ChatGPT.
+      <strong>STATE:</strong> ${state || "(sem state)"} 
     `;
-  </script>
+  } else {
+    document.getElementById("codeBox").innerHTML = 
+      "Nenhum código recebido. Algo falhou no fluxo de autorização.";
+  }
+</script>
+
 </body>
 </html>
