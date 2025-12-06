@@ -2,16 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Authorize with TikTok</title>
+  <title>MacFlyToTheWorld Scheduler - Connected</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 16px;
+      max-width: 600px;
+      text-align: center;
+    }
+    code {
+      font-family: SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      word-break: break-all;
+    }
+  </style>
 </head>
 <body>
-  <h1>Authorize MacFlyToTheWorld Scheduler</h1>
-  <p>Click the button below to log in with TikTok and authorize video upload.</p>
+  <h1>MacFlyToTheWorld Scheduler conectado ✅</h1>
+  <p id="message">A processar autorização…</p>
 
-  <a
-    href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbaw3pxdec92ya1owq&response_type=code&scope=user.info.basic&redirect_uri=https%3A%2F%2Fmacflytotheworld.github.io%2Fcallback.html&state=macfly-test-123"
-  >
-    <button>Login with TikTok</button>
-  </a>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const state = params.get("state");
+
+    if (code) {
+      document.getElementById("message").innerHTML =
+        "Autorização concluída com sucesso.<br><br>" +
+        "Authorization code recebido:<br><code>" + code + "</code><br><br>" +
+        "Este código será usado pelo n8n para criar o access token.";
+    } else {
+      document.getElementById("message").textContent =
+        "Não foi possível encontrar o authorization code na URL.";
+    }
+  </script>
 </body>
 </html>
