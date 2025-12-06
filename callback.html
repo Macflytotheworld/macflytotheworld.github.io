@@ -1,51 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>MacFlyToTheWorld Scheduler - Connected</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 16px;
-      max-width: 600px;
-      text-align: center;
-    }
-    code {
-      font-family: SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      word-break: break-all;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Macfly Callback</title>
 </head>
 <body>
-  <h1>MacFlyToTheWorld Scheduler conectado ✅</h1>
-  <p id="message">A processar autorização…</p>
+  <h1>Authorization Result</h1>
+  <p id="result">Waiting...</p>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     const state = params.get("state");
 
-    if (code) {
-      document.getElementById("message").innerHTML =
-        "Autorização concluída com sucesso.<br><br>" +
-        "Authorization code recebido:<br><code>" + code + "</code><br><br>" +
-        "Este código será usado pelo n8n para criar o access token.";
-    } else {
-      document.getElementById("message").textContent =
-        "Não foi possível encontrar o authorization code na URL.";
-    }
+    document.getElementById("result").innerHTML = `
+      <strong>CODE:</strong> ${code}<br>
+      <strong>STATE:</strong> ${state}<br><br>
+      Copia este código e envia para o ChatGPT.
+    `;
   </script>
 </body>
 </html>
