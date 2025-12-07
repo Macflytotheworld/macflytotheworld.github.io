@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Macfly – TikTok Publishing Flow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617, #020617);
+      color: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shell {
+      width: 96%;
+      max-width: 880px;
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border-radius: 24px;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 24px 28px 28px;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .brand {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .brand span {
+      color: #f97316;
+    }
+    .user-pill {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0 0 6px;
+    }
+    p {
+      margin: 0 0 20px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 20px;
+    }
+    .panel {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 18px;
+      padding: 16px 18px 18px;
+      border: 1px solid rgba(75, 85, 99, 0.7);
+    }
+    .panel-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+    .fake-video {
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(37, 244, 238, 0.18));
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      aspect-ratio: 9 / 16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-size: 14px;
+      text-align: center;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .field-label {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+    .input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      padding: 8px 12px;
+      font-size: 13px;
+      outline: none;
+    }
+    .input::placeholder {
+      color: #6b7280;
+    }
+    .cta {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+    }
+    .btn-primary {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 1);
+    }
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.9);
+    }
+    .caption-preview {
+      font-size: 12px;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      height: 120px;
+      overflow: hidden;
+    }
+    .small {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+    @media (max-width: 720px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="top">
+      <div class="brand"><span>Macfly</span> To The World</div>
+      <div class="user-pill">
+        <span class="dot"></span>
+        <span>Signed in with TikTok</span>
+      </div>
+    </div>
+
+    <h1>TikTok Video Publishing Flow</h1>
+    <p>
+      This demo screen shows what happens after a user logs in with TikTok:
+      they select a video and publish it directly to their TikTok account via
+      the Content Posting API.
+    </p>
+
+    <div class="layout">
+      <section class="panel">
+        <div class="panel-title">1 · Select or generate video</div>
+        <div class="fake-video">
+          AI-generated short-form video preview (placeholder for the demo)
+        </div>
+        <div class="field-label">Video title</div>
+        <input class="input" type="text" placeholder="My AI-powered TikTok video" />
+        <div class="field-label" style="margin-top:10px;">Source</div>
+        <input class="input" type="text" placeholder="Uploaded file or generated by AI" />
+        <div class="small">
+          In the real integration, this section lets the user upload or generate the
+          video that will be sent to TikTok.
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">2 · Publish to TikTok</div>
+        <div class="field-label">TikTok caption</div>
+        <div class="caption-preview">
+          Boost your reach with this AI-generated short-form video. Created inside
+          Macfly To The World and published directly to TikTok using the
+          video.upload scope.
+        </div>
+        <div class="cta">
+          <button class="btn btn-secondary" type="button">
+            Simulate preview
+          </button>
+          <button class="btn btn-primary" type="button">
+            Publish to TikTok
+          </button>
+        </div>
+        <div class="small">
+          In production, this button will call TikTok's Content Posting API to upload
+          the selected video to the authenticated user's account.
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
