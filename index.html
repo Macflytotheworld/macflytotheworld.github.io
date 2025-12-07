@@ -2,68 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MacFlyToTheWorld Scheduler</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Macfly To The World – TikTok Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
-      font-family: -apple-system, system-ui, sans-serif;
       margin: 0;
-      padding: 40px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2933, #020617);
+      color: #f9fafb;
       display: flex;
-      flex-direction: column;
+      min-height: 100vh;
       align-items: center;
-      justify-content: flex-start;
-      background: #fafafa;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 24px;
+      padding: 32px 40px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .logo span {
+      color: #f97316;
+    }
+    .subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 18px;
     }
     h1 {
-      margin-bottom: 10px;
+      font-size: 20px;
+      margin: 0 0 8px;
     }
     p {
-      max-width: 480px;
-      text-align: center;
-      margin-bottom: 30px;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin: 0 0 24px;
+      line-height: 1.5;
     }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
+    .login-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 999px;
       border: none;
+      font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
-      margin: 5px;
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
-    .btn-tiktok {
-      background: #000;
-      color: #fff;
+    .login-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      background: #020617;
     }
-    .links {
-      margin-top: 20px;
+    .login-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #25f4ee, #fe2c55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 14px;
     }
-    .links a {
-      margin: 0 8px;
-      color: #0070f3;
-      text-decoration: none;
+    .helper {
+      margin-top: 18px;
+      font-size: 11px;
+      color: #9ca3af;
     }
   </style>
 </head>
 <body>
-  <h1>MacFlyToTheWorld Scheduler</h1>
-  <p>
-    Simple TikTok automation tool that lets you log in with TikTok and
-    schedule videos through an external workflow (n8n).
-  </p>
+  <main class="card">
+    <div class="logo"><span>Macfly</span> To The World</div>
+    <div class="subtitle">TikTok Integration Demo</div>
 
-  <!-- BOTÃO LOGIN COM TIKTOK -->
-<a href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbaw3pxdec92ya1owq&scope=user.info.basic&response_type=code&redirect_uri=https%3A%2F%2Fmacflytotheworld.github.io%2Fcallback.html&state=macfly-demo-123">
-  Login with TikTok
-</a>
+    <h1>Sign in with TikTok</h1>
+    <p>
+      This demo shows how users authenticate with TikTok before creating and
+      publishing short-form videos through our platform.
+    </p>
 
+    <!-- Botão para a “página depois do login” -->
+    <a class="login-btn" href="dashboard.html">
+      <div class="login-icon">♪</div>
+      <span>Login with TikTok</span>
+    </a>
 
-  <div class="links">
-    <a href="https://macflytotheworld.github.io/privacy.html" target="_blank">Privacy Policy</a>
-    <a href="https://macflytotheworld.github.io/terms.html" target="_blank">Terms of Service</a>
-  </div>
+    <div class="helper">
+      In production, this button will use TikTok Login Kit to authenticate the user.
+    </div>
+  </main>
 </body>
 </html>
