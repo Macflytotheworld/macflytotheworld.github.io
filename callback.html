@@ -1,64 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <title>TikTok Auth Callback</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-    code {
-      background: #f4f4f4;
-      padding: 4px 6px;
-      border-radius: 4px;
-      word-break: break-all;
-    }
-    .box {
-      border: 1px solid #ddd;
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 12px;
-      background: #fafafa;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      margin-top: 8px;
-      font-family: monospace;
-      font-size: 12px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacFly - TikTok Authorization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: #e91e63;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        .logo span {
+            color: #666;
+            font-size: 14px;
+        }
+        .success {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .success h2 {
+            color: #2e7d32;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .error {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .error h2 {
+            color: #c62828;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .code-box {
+            background: #f5f5f5;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .code-box label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .code-box code {
+            display: block;
+            background: #263238;
+            color: #80cbc4;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            word-break: break-all;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        .copy-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #c2185b;
+        }
+        .copy-btn.copied {
+            background: #4caf50;
+        }
+        .instructions {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .instructions h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            color: #666;
+            font-size: 13px;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        .waiting {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .waiting .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e91e63;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <h1>TikTok Auth Callback</h1>
-  <p>Se estiveres a ver esta página, o TikTok redirecionou corretamente.</p>
+    <div class="container">
+        <div class="logo">
+            <h1>🎬 MacFly</h1>
+            <span>TikTok Authorization</span>
+        </div>
+        
+        <div id="content">
+            <div class="waiting">
+                <div class="spinner"></div>
+                <p>A processar autorização...</p>
+            </div>
+        </div>
+    </div>
 
-  <div class="box">
-    <h2>Parâmetros recebidos</h2>
-    <p><strong>Code:</strong> <code id="codeValue">a carregar…</code></p>
-    <p><strong>State:</strong> <code id="stateValue">a carregar…</code></p>
-  </div>
+    <script>
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                code: params.get('code'),
+                state: params.get('state'),
+                error: params.get('error'),
+                error_description: params.get('error_description')
+            };
+        }
 
-  <div class="box">
-    <h2>URL completo</h2>
-    <textarea id="fullUrl" readonly></textarea>
-  </div>
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓ Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copiar Código';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
 
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var code = params.get("code");
-      var state = params.get("state");
-      var fullUrl = window.location.href;
+        function showResult() {
+            const params = getUrlParams();
+            const content = document.getElementById('content');
 
-      document.getElementById("codeValue").textContent = code || "(sem code)";
-      document.getElementById("stateValue").textContent = state || "(sem state)";
-      document.getElementById("fullUrl").value = fullUrl;
-    })();
-  </script>
+            if (params.error) {
+                content.innerHTML = `
+                    <div class="error">
+                        <h2>❌ Erro na Autorização</h2>
+                        <p><strong>Erro:</strong> ${params.error}</p>
+                        <p><strong>Descrição:</strong> ${params.error_description || 'Sem descrição'}</p>
+                    </div>
+                    <p style="color: #666; font-size: 14px;">
+                        Tenta novamente ou verifica as permissões da app no TikTok Developer Portal.
+                    </p>
+                `;
+            } else if (params.code) {
+                content.innerHTML = `
+                    <div class="success">
+                        <h2>✅ Autorização Bem Sucedida!</h2>
+                        <p>O TikTok autorizou a app MacFly. Copia o código abaixo.</p>
+                    </div>
+                    
+                    <div class="code-box">
+                        <label>Authorization Code</label>
+                        <code id="auth-code">${params.code}</code>
+                        <button class="copy-btn" onclick="copyToClipboard('${params.code}', this)">
+                            Copiar Código
+                        </button>
+                    </div>
+                    
+                    ${params.state ? `
+                    <div class="code-box">
+                        <label>State</label>
+                        <code>${params.state}</code>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="instructions">
+                        <h3>📋 Próximos Passos:</h3>
+                        <ol>
+                            <li>Copia o Authorization Code acima</li>
+                            <li>Vai ao n8n e usa-o para obter o Access Token</li>
+                            <li>O código expira em 10 minutos!</li>
+                        </ol>
+                    </div>
+                `;
+            } else {
+                content.innerHTML = `
+                    <div class="error">
+                        <h2>⚠️ Nenhum Código Recebido</h2>
+                        <p>Esta página é usada para receber o código de autorização do TikTok.</p>
+                    </div>
+                    <div class="instructions">
+                        <h3>Como usar:</h3>
+                        <ol>
+                            <li>Inicia o fluxo de autorização no TikTok</li>
+                            <li>Autoriza a app MacFly</li>
+                            <li>Serás redirecionado para esta página com o código</li>
+                        </ol>
+                    </div>
+                `;
+            }
+        }
+
+        // Run on page load
+        showResult();
+    </script>
 </body>
 </html>
