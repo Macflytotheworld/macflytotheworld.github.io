@@ -1,60 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <title>Macfly – Conectar TikTok Sandbox</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: #111827;
-      color: #f9fafb;
-    }
-    .card {
-      background: #1f2937;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      text-align: center;
-      max-width: 420px;
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-    p {
-      font-size: 14px;
-      opacity: 0.85;
-      margin-bottom: 24px;
-    }
-    a.button {
-      display: inline-block;
-      padding: 12px 24px;
-      border-radius: 999px;
-      background: #fe2c55;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-    }
-    a.button:hover {
-      opacity: 0.9;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacFly - Conectar TikTok</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: #e91e63;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        .logo span {
+            color: #666;
+            font-size: 14px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .tiktok-btn {
+            background: #000000;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tiktok-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .tiktok-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+        .status {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .status.connected {
+            display: block;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+        }
+        .status.error {
+            display: block;
+            background: #ffebee;
+            border: 1px solid #f44336;
+            color: #c62828;
+        }
+        .permissions {
+            margin-top: 30px;
+            text-align: left;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .permissions h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .permissions ul {
+            color: #666;
+            font-size: 13px;
+            padding-left: 20px;
+        }
+        .permissions li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+        .footer a {
+            color: #e91e63;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Ligar TikTok Sandbox ao Macfly</h1>
-    <p>Clica no botão em baixo para autorizar a app Sandbox no TikTok.</p>
-    <a
-      class="button"
-      href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbaw5qeyyp7rthoiff&response_type=code&scope=user.info.basic,video.upload,video.publish&redirect_uri=https%3A%2F%2Fmacflytotheworld.github.io%2Fcallback.html&state=macfly-demo-123"
-    >
-      Conectar TikTok Sandbox
-    </a>
-  </div>
+    <div class="container">
+        <div class="logo">
+            <h1>🎬 MacFly</h1>
+            <span>Conectar TikTok</span>
+        </div>
+        
+        <p class="description">
+            Conecta a tua conta TikTok para publicar vídeos automaticamente através do MacFly.
+        </p>
+        
+        <button class="tiktok-btn" onclick="connectTikTok()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+            Conectar com TikTok
+        </button>
+        
+        <div id="status" class="status"></div>
+        
+        <div class="permissions">
+            <h3>📋 Permissões solicitadas:</h3>
+            <ul>
+                <li><strong>user.info.basic</strong> - Informações básicas da conta</li>
+                <li><strong>video.upload</strong> - Upload de vídeos</li>
+                <li><strong>video.publish</strong> - Publicação de vídeos</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <a href="privacy.html">Política de Privacidade</a> · 
+            <a href="terms.html">Termos de Serviço</a>
+        </div>
+    </div>
+
+    <script>
+        // TikTok OAuth Configuration
+        const TIKTOK_CLIENT_KEY = 'awrk5c6xnf970jhc';
+        const REDIRECT_URI = window.location.origin + '/callback.html';
+        const SCOPES = 'user.info.basic,video.upload,video.publish';
+        
+        function connectTikTok() {
+            // Generate random state for CSRF protection
+            const state = Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('tiktok_oauth_state', state);
+            
+            // Build OAuth URL
+            const authUrl = new URL('https://www.tiktok.com/v2/auth/authorize/');
+            authUrl.searchParams.set('client_key', TIKTOK_CLIENT_KEY);
+            authUrl.searchParams.set('scope', SCOPES);
+            authUrl.searchParams.set('response_type', 'code');
+            authUrl.searchParams.set('redirect_uri', REDIRECT_URI);
+            authUrl.searchParams.set('state', state);
+            
+            console.log('Redirecting to:', authUrl.toString());
+            console.log('Redirect URI:', REDIRECT_URI);
+            
+            // Redirect to TikTok
+            window.location.href = authUrl.toString();
+        }
+        
+        // Check if returning from OAuth
+        function checkOAuthStatus() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const error = urlParams.get('error');
+            
+            const statusDiv = document.getElementById('status');
+            
+            if (success === 'true') {
+                statusDiv.className = 'status connected';
+                statusDiv.innerHTML = '✅ TikTok conectado com sucesso! Podes fechar esta página.';
+            } else if (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ Erro: ' + error;
+            }
+        }
+        
+        checkOAuthStatus();
+    </script>
 </body>
 </html>
