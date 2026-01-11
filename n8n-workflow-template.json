@@ -1,0 +1,287 @@
+{
+  "name": "MacFly - TikTok OAuth & Video Publishing",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "macfly-tiktok",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-receive-code",
+      "name": "Webhook - Receive Auth Code",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 300],
+      "webhookId": "macfly-tiktok"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.tiktokapis.com/v2/oauth/token/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "client_key",
+              "value": "={{ $vars.TIKTOK_CLIENT_KEY }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $vars.TIKTOK_CLIENT_SECRET }}"
+            },
+            {
+              "name": "code",
+              "value": "={{ $json.body.authorization_code }}"
+            },
+            {
+              "name": "grant_type",
+              "value": "authorization_code"
+            },
+            {
+              "name": "redirect_uri",
+              "value": "={{ $vars.TIKTOK_REDIRECT_URI }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-exchange-token",
+      "name": "Exchange Code for Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Código recebido! A processar...', timestamp: $now.toISO() }) }}",
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [460, 480]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-token-success",
+              "leftValue": "={{ $json.access_token }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-token-success",
+      "name": "Token Received?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "tiktok_access_token",
+        "value": "={{ $json.access_token }}",
+        "options": {}
+      },
+      "id": "store-access-token",
+      "name": "Store Access Token",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [900, 200],
+      "notesInFlow": true,
+      "notes": "Guarda o token para usar em publicações futuras"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "tiktok_refresh_token",
+        "value": "={{ $json.refresh_token }}",
+        "options": {}
+      },
+      "id": "store-refresh-token",
+      "name": "Store Refresh Token",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [900, 380]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "access_token",
+              "value": "={{ $('Store Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "refresh_token",
+              "value": "={{ $('Store Refresh Token').item.json.refresh_token }}"
+            },
+            {
+              "name": "open_id",
+              "value": "={{ $('Exchange Code for Token').item.json.open_id }}"
+            },
+            {
+              "name": "expires_in",
+              "value": "={{ $('Exchange Code for Token').item.json.expires_in }}"
+            },
+            {
+              "name": "status",
+              "value": "success"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-output",
+      "name": "Prepare Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "error"
+            },
+            {
+              "name": "error",
+              "value": "={{ $json.error }}"
+            },
+            {
+              "name": "error_description",
+              "value": "={{ $json.error_description }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "handle-error",
+      "name": "Handle Error",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [900, 480]
+    }
+  ],
+  "connections": {
+    "Webhook - Receive Auth Code": {
+      "main": [
+        [
+          {
+            "node": "Exchange Code for Token",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Exchange Code for Token": {
+      "main": [
+        [
+          {
+            "node": "Token Received?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token Received?": {
+      "main": [
+        [
+          {
+            "node": "Store Access Token",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Store Refresh Token",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Handle Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Access Token": {
+      "main": [
+        [
+          {
+            "node": "Prepare Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Refresh Token": {
+      "main": [
+        [
+          {
+            "node": "Prepare Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "instanceId": "macfly-tiktok-oauth"
+  },
+  "tags": [
+    {
+      "name": "TikTok"
+    },
+    {
+      "name": "MacFly"
+    },
+    {
+      "name": "OAuth"
+    }
+  ]
+}
