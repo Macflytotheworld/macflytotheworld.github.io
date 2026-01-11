@@ -268,15 +268,14 @@
 
     <script>
         // ============================================
-        // CONFIGURAÇÃO N8N
+        // CONFIGURAÇÃO N8N - MacFly
         // ============================================
-        // Coloca aqui a URL do teu webhook n8n
-        // Exemplo: https://teu-dominio.app.n8n.cloud/webhook/macfly-tiktok
-        // Ou deixa vazio para configurar manualmente na página
-        const N8N_WEBHOOK_URL = '';
+        // URL base do n8n: https://macflytotheworld.app.n8n.cloud/
+        // Webhook para receber o código de autorização do TikTok
+        const N8N_WEBHOOK_URL = 'https://macflytotheworld.app.n8n.cloud/webhook/macfly-tiktok';
         
         // Se true, envia automaticamente quando a página carrega
-        const AUTO_SEND_TO_N8N = false;
+        const AUTO_SEND_TO_N8N = true;
         // ============================================
 
         function getUrlParams() {
