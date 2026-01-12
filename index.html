@@ -55,6 +55,12 @@
             text-align: center;
         }
 
+        .logo {
+            height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+
         .brand {
             font-size: 24px;
             font-weight: 800;
@@ -439,7 +445,8 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <div class="brand">🎬 MACFLY WORLD</div>
+            <img src="https://macflytotheworld.github.io/logo.png" alt="MacFly World" class="logo" onerror="this.style.display='none'; document.getElementById('brandText').style.display='block';">
+            <div class="brand" id="brandText" style="display:none;">🎬 MACFLY WORLD</div>
             <div class="tagline">TikTok Made Me Buy It 🛒</div>
             <div class="stats">
                 <span class="stat">🔥 <span class="stat-value" id="totalViews">0</span> Views</span>
@@ -450,13 +457,6 @@
 
     <!-- Main -->
     <main class="main">
-        <!-- Hero -->
-        <div class="hero">
-            <div class="hero-title">💬 Comment "LINK" on any Instagram video</div>
-            <div class="hero-subtitle">Get the product link sent to your DM instantly! 📩</div>
-            <span class="hero-badge">📸 Works on Instagram</span>
-        </div>
-
         <!-- Categories -->
         <div class="categories">
             <button class="category-btn active" data-category="all">All 🔥</button>
