@@ -1,137 +1,711 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Macfly – Private Automation Tool</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MACFLY WORLD | TikTok Made Me Buy It 🛒</title>
+    <meta name="description" content="Discover viral products and trending finds from TikTok. Comment LINK on any video to get the product!">
+    <meta property="og:title" content="MACFLY WORLD | Viral Finds">
+    <meta property="og:description" content="TikTok Made Me Buy It 🛒 - Shop viral products">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --accent: #3b82f6;
-      --border: #e5e7eb;
-    }
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --accent-pink: #ff0050;
+            --accent-purple: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #ff0050, #7c3aed);
+        }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
 
-    .card {
-      background: var(--card-bg);
-      max-width: 860px;
-      width: calc(100% - 40px);
-      padding: 48px;
-      border-radius: 14px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-    }
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+        }
 
-    h1 {
-      font-size: 36px;
-      margin: 0 0 20px;
-      color: var(--text-main);
-    }
+        .header-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-    p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
+        .brand {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
 
-    .highlight {
-      border-left: 4px solid var(--accent);
-      background: #f8fafc;
-      padding: 16px 20px;
-      margin: 28px 0;
-      border-radius: 6px;
-      color: #334155;
-    }
+        .tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
 
-    .contact {
-      margin-top: 30px;
-      font-weight: 500;
-      color: #334155;
-    }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 12px;
+            font-size: 13px;
+        }
 
-    footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+        .stat {
+            color: var(--text-secondary);
+        }
 
-    footer a {
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: 500;
-    }
+        .stat-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        /* Main Content */
+        .main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    @media (max-width: 600px) {
-      .card {
-        padding: 32px 24px;
-      }
+        /* Hero Banner */
+        .hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
 
-      h1 {
-        font-size: 28px;
-      }
-    }
-  </style>
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: var(--gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            flex-shrink: 0;
+            padding: 10px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .category-btn:hover {
+            border-color: var(--accent-pink);
+            color: var(--text-primary);
+        }
+
+        .category-btn.active {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Sort */
+        .sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .results-count {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Product Grid */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255, 0, 80, 0.2);
+            border-color: var(--accent-pink);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-trending {
+            background: var(--accent-pink);
+            color: white;
+        }
+
+        .badge-new {
+            background: #22c55e;
+            color: white;
+        }
+
+        .badge-hot {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .rating {
+            color: #fbbf24;
+        }
+
+        .views {
+            color: var(--text-secondary);
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: var(--gradient);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .buy-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 24px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .follow-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 80, 0.4);
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Empty State */
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="brand">🎬 MACFLY WORLD</div>
+            <div class="tagline">TikTok Made Me Buy It 🛒</div>
+            <div class="stats">
+                <span class="stat">🔥 <span class="stat-value" id="totalViews">0</span> Views</span>
+                <span class="stat">📦 <span class="stat-value" id="productCount">0</span> Products</span>
+            </div>
+        </div>
+    </header>
 
-  <div class="card">
-    <h1>Macfly</h1>
+    <!-- Main -->
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-title">💬 Comment "LINK" on any video</div>
+            <div class="hero-subtitle">Get the product link sent to your DM instantly! 📩</div>
+        </div>
 
-    <p>
-      Macfly is a private software tool designed to automate the creation,
-      management, and publishing of video content on social media platforms,
-      including TikTok.
-    </p>
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All 🔥</button>
+            <button class="category-btn" data-category="tech">Tech 📱</button>
+            <button class="category-btn" data-category="home">Home 🏠</button>
+            <button class="category-btn" data-category="kitchen">Kitchen 🍳</button>
+            <button class="category-btn" data-category="beauty">Beauty 💄</button>
+            <button class="category-btn" data-category="fitness">Fitness 💪</button>
+            <button class="category-btn" data-category="pets">Pets 🐾</button>
+        </div>
 
-    <p>
-      The application uses official platform APIs to upload videos, manage
-      captions, and support automated publishing workflows for authenticated
-      users.
-    </p>
+        <!-- Sort -->
+        <div class="sort-bar">
+            <span class="results-count"><span id="resultsCount">0</span> products</span>
+            <select class="sort-select" id="sortSelect">
+                <option value="popular">🔥 Most Popular</option>
+                <option value="newest">✨ Newest</option>
+                <option value="price-low">💰 Price: Low-High</option>
+                <option value="price-high">💰 Price: High-Low</option>
+            </select>
+        </div>
 
-    <p>
-      Macfly is not a public consumer-facing product. Access is restricted to
-      approved users and is currently used for internal and limited private
-      purposes only.
-    </p>
+        <!-- Products Grid -->
+        <div class="products" id="productsGrid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <div>Loading viral finds...</div>
+            </div>
+        </div>
+    </main>
 
-    <div class="highlight">
-      This page is a public informational website provided for platform review
-      and compliance purposes. The main application requires authentication and
-      is not publicly accessible.
-    </div>
-
-    <div class="contact">
-      Contact: macflytotheworld@gmail.com
-    </div>
-
-    <footer>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="https://instagram.com/macflytotheworld" target="_blank" class="follow-btn">
+            📸 Follow @macflytotheworld
+        </a>
+        <p class="disclaimer">🔗 As an Amazon Associate, we earn from qualifying purchases</p>
     </footer>
-  </div>
 
+    <script>
+        // Configuration
+        const CONFIG = {
+            amazonTag: 'macflytothewo-20',
+            sheetId: '10DnRRa9BwbTCN7S0ingrPrlyVw7ST8NcjWLg8X8SHWg',
+            // For demo, using sample products. In production, fetch from Google Sheets API
+        };
+
+        // Sample products (replace with API call to your Google Sheet)
+        const SAMPLE_PRODUCTS = [
+            {
+                id: 1,
+                title: "LED Strip Lights RGB Color Changing",
+                category: "tech",
+                price: 24.99,
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
+                asin: "B07XHVJK3D",
+                views: 125000,
+                rating: 4.5,
+                badge: "trending",
+                isNew: false
+            },
+            {
+                id: 2,
+                title: "Portable Blender USB Rechargeable",
+                category: "kitchen",
+                price: 29.99,
+                image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400",
+                asin: "B08XYZ1234",
+                views: 89000,
+                rating: 4.7,
+                badge: "hot",
+                isNew: true
+            },
+            {
+                id: 3,
+                title: "Cloud Slides Pillow Slippers",
+                category: "home",
+                price: 19.99,
+                image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400",
+                asin: "B09ABC5678",
+                views: 234000,
+                rating: 4.8,
+                badge: "trending",
+                isNew: false
+            },
+            {
+                id: 4,
+                title: "Ice Roller for Face & Eyes",
+                category: "beauty",
+                price: 12.99,
+                image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400",
+                asin: "B07DEF9012",
+                views: 156000,
+                rating: 4.6,
+                badge: "new",
+                isNew: true
+            },
+            {
+                id: 5,
+                title: "Resistance Bands Set",
+                category: "fitness",
+                price: 15.99,
+                image: "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=400",
+                asin: "B08GHI3456",
+                views: 78000,
+                rating: 4.4,
+                badge: null,
+                isNew: false
+            },
+            {
+                id: 6,
+                title: "Pet Hair Remover Roller",
+                category: "pets",
+                price: 14.99,
+                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                asin: "B09JKL7890",
+                views: 92000,
+                rating: 4.3,
+                badge: "hot",
+                isNew: false
+            },
+            {
+                id: 7,
+                title: "Wireless Earbuds Bluetooth 5.0",
+                category: "tech",
+                price: 34.99,
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400",
+                asin: "B08MNO1234",
+                views: 445000,
+                rating: 4.5,
+                badge: "trending",
+                isNew: false
+            },
+            {
+                id: 8,
+                title: "Sunset Lamp Projector",
+                category: "home",
+                price: 22.99,
+                image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400",
+                asin: "B09PQR5678",
+                views: 312000,
+                rating: 4.7,
+                badge: "trending",
+                isNew: true
+            }
+        ];
+
+        // State
+        let products = [...SAMPLE_PRODUCTS];
+        let activeCategory = 'all';
+        let sortBy = 'popular';
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const totalViewsEl = document.getElementById('totalViews');
+        const productCountEl = document.getElementById('productCount');
+        const resultsCountEl = document.getElementById('resultsCount');
+        const sortSelect = document.getElementById('sortSelect');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+
+        // Format numbers
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+
+        // Get Amazon link
+        function getAmazonLink(asin) {
+            return `https://www.amazon.com/dp/${asin}?tag=${CONFIG.amazonTag}`;
+        }
+
+        // Get badge HTML
+        function getBadgeHTML(badge) {
+            if (!badge) return '';
+            const badges = {
+                trending: '<span class="badge badge-trending">🔥 Trending</span>',
+                new: '<span class="badge badge-new">✨ New</span>',
+                hot: '<span class="badge badge-hot">⚡ Hot</span>'
+            };
+            return badges[badge] || '';
+        }
+
+        // Render product card
+        function renderProduct(product) {
+            return `
+                <a href="${getAmazonLink(product.asin)}" target="_blank" class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                        ${getBadgeHTML(product.badge)}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-meta">
+                            <span class="rating">⭐ ${product.rating}</span>
+                            <span class="views">👁️ ${formatNumber(product.views)}</span>
+                        </div>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <button class="buy-btn">🔥 GET IT NOW</button>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Filter and sort products
+        function getFilteredProducts() {
+            let filtered = [...products];
+            
+            // Filter by category
+            if (activeCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === activeCategory);
+            }
+            
+            // Sort
+            switch (sortBy) {
+                case 'popular':
+                    filtered.sort((a, b) => b.views - a.views);
+                    break;
+                case 'newest':
+                    filtered.sort((a, b) => b.isNew - a.isNew);
+                    break;
+                case 'price-low':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+            }
+            
+            return filtered;
+        }
+
+        // Render products
+        function renderProducts() {
+            const filtered = getFilteredProducts();
+            
+            if (filtered.length === 0) {
+                productsGrid.innerHTML = `
+                    <div class="empty" style="grid-column: 1/-1;">
+                        <div class="empty-icon">🔍</div>
+                        <div>No products found</div>
+                        <div>Check back soon for more viral finds!</div>
+                    </div>
+                `;
+            } else {
+                productsGrid.innerHTML = filtered.map(renderProduct).join('');
+            }
+            
+            resultsCountEl.textContent = filtered.length;
+        }
+
+        // Update stats
+        function updateStats() {
+            const totalViews = products.reduce((sum, p) => sum + p.views, 0);
+            totalViewsEl.textContent = formatNumber(totalViews);
+            productCountEl.textContent = products.length;
+        }
+
+        // Event: Category click
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeCategory = btn.dataset.category;
+                renderProducts();
+            });
+        });
+
+        // Event: Sort change
+        sortSelect.addEventListener('change', (e) => {
+            sortBy = e.target.value;
+            renderProducts();
+        });
+
+        // Initialize
+        function init() {
+            // In production, fetch products from Google Sheets API here
+            // For now, using sample products
+            updateStats();
+            renderProducts();
+        }
+
+        // Start
+        init();
+    </script>
 </body>
 </html>
