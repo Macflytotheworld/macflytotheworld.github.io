@@ -136,6 +136,17 @@
             color: var(--text-secondary);
         }
 
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
         /* Categories */
         .categories {
             display: flex;
@@ -399,6 +410,29 @@
             font-size: 48px;
             margin-bottom: 16px;
         }
+
+        /* Error */
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #ef4444;
+        }
+
+        .retry-btn {
+            margin-top: 16px;
+            padding: 10px 20px;
+            border: 1px solid var(--accent-pink);
+            background: transparent;
+            color: var(--accent-pink);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .retry-btn:hover {
+            background: var(--accent-pink);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -418,8 +452,9 @@
     <main class="main">
         <!-- Hero -->
         <div class="hero">
-            <div class="hero-title">💬 Comment "LINK" on any video</div>
+            <div class="hero-title">💬 Comment "LINK" on any Instagram video</div>
             <div class="hero-subtitle">Get the product link sent to your DM instantly! 📩</div>
+            <span class="hero-badge">📸 Works on Instagram</span>
         </div>
 
         <!-- Categories -->
@@ -465,112 +500,57 @@
         // Configuration
         const CONFIG = {
             amazonTag: 'macflytothewo-20',
-            sheetId: '10DnRRa9BwbTCN7S0ingrPrlyVw7ST8NcjWLg8X8SHWg',
-            // For demo, using sample products. In production, fetch from Google Sheets API
+            apiUrl: 'https://macflytotheworld.app.n8n.cloud/webhook/products',
+            fallbackProducts: [
+                {
+                    id: 1,
+                    title: "LED Strip Lights RGB Color Changing",
+                    category: "tech",
+                    price: 24.99,
+                    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
+                    asin: "B07XHVJK3D",
+                    views: 125000,
+                    rating: 4.5,
+                    badge: "trending"
+                },
+                {
+                    id: 2,
+                    title: "Portable Blender USB Rechargeable",
+                    category: "kitchen",
+                    price: 29.99,
+                    image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400",
+                    asin: "B08XYZ1234",
+                    views: 89000,
+                    rating: 4.7,
+                    badge: "hot"
+                },
+                {
+                    id: 3,
+                    title: "Cloud Slides Pillow Slippers",
+                    category: "home",
+                    price: 19.99,
+                    image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400",
+                    asin: "B09ABC5678",
+                    views: 234000,
+                    rating: 4.8,
+                    badge: "trending"
+                },
+                {
+                    id: 4,
+                    title: "Ice Roller for Face & Eyes",
+                    category: "beauty",
+                    price: 12.99,
+                    image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400",
+                    asin: "B07DEF9012",
+                    views: 156000,
+                    rating: 4.6,
+                    badge: "new"
+                }
+            ]
         };
 
-        // Sample products (replace with API call to your Google Sheet)
-        const SAMPLE_PRODUCTS = [
-            {
-                id: 1,
-                title: "LED Strip Lights RGB Color Changing",
-                category: "tech",
-                price: 24.99,
-                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
-                asin: "B07XHVJK3D",
-                views: 125000,
-                rating: 4.5,
-                badge: "trending",
-                isNew: false
-            },
-            {
-                id: 2,
-                title: "Portable Blender USB Rechargeable",
-                category: "kitchen",
-                price: 29.99,
-                image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400",
-                asin: "B08XYZ1234",
-                views: 89000,
-                rating: 4.7,
-                badge: "hot",
-                isNew: true
-            },
-            {
-                id: 3,
-                title: "Cloud Slides Pillow Slippers",
-                category: "home",
-                price: 19.99,
-                image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400",
-                asin: "B09ABC5678",
-                views: 234000,
-                rating: 4.8,
-                badge: "trending",
-                isNew: false
-            },
-            {
-                id: 4,
-                title: "Ice Roller for Face & Eyes",
-                category: "beauty",
-                price: 12.99,
-                image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400",
-                asin: "B07DEF9012",
-                views: 156000,
-                rating: 4.6,
-                badge: "new",
-                isNew: true
-            },
-            {
-                id: 5,
-                title: "Resistance Bands Set",
-                category: "fitness",
-                price: 15.99,
-                image: "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=400",
-                asin: "B08GHI3456",
-                views: 78000,
-                rating: 4.4,
-                badge: null,
-                isNew: false
-            },
-            {
-                id: 6,
-                title: "Pet Hair Remover Roller",
-                category: "pets",
-                price: 14.99,
-                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
-                asin: "B09JKL7890",
-                views: 92000,
-                rating: 4.3,
-                badge: "hot",
-                isNew: false
-            },
-            {
-                id: 7,
-                title: "Wireless Earbuds Bluetooth 5.0",
-                category: "tech",
-                price: 34.99,
-                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400",
-                asin: "B08MNO1234",
-                views: 445000,
-                rating: 4.5,
-                badge: "trending",
-                isNew: false
-            },
-            {
-                id: 8,
-                title: "Sunset Lamp Projector",
-                category: "home",
-                price: 22.99,
-                image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400",
-                asin: "B09PQR5678",
-                views: 312000,
-                rating: 4.7,
-                badge: "trending",
-                isNew: true
-            }
-        ];
-
         // State
-        let products = [...SAMPLE_PRODUCTS];
+        let products = [];
         let activeCategory = 'all';
         let sortBy = 'popular';
 
@@ -590,8 +570,9 @@
         }
 
         // Get Amazon link
-        function getAmazonLink(asin) {
-            return `https://www.amazon.com/dp/${asin}?tag=${CONFIG.amazonTag}`;
+        function getAmazonLink(product) {
+            if (product.affiliate_url) return product.affiliate_url;
+            return `https://www.amazon.com/dp/${product.asin}?tag=${CONFIG.amazonTag}`;
         }
 
         // Get badge HTML
@@ -607,19 +588,20 @@
 
         // Render product card
         function renderProduct(product) {
+            const price = typeof product.price === 'number' ? product.price.toFixed(2) : product.price;
             return `
-                <a href="${getAmazonLink(product.asin)}" target="_blank" class="product-card">
+                <a href="${getAmazonLink(product)}" target="_blank" class="product-card" rel="noopener">
                     <div class="product-image">
-                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Product'">
                         ${getBadgeHTML(product.badge)}
                     </div>
                     <div class="product-info">
                         <div class="product-title">${product.title}</div>
                         <div class="product-meta">
-                            <span class="rating">⭐ ${product.rating}</span>
-                            <span class="views">👁️ ${formatNumber(product.views)}</span>
+                            <span class="rating">⭐ ${product.rating || '4.5'}</span>
+                            <span class="views">👁️ ${formatNumber(product.views || 0)}</span>
                         </div>
-                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-price">$${price}</div>
                         <button class="buy-btn">🔥 GET IT NOW</button>
                     </div>
                 </a>
@@ -632,22 +614,24 @@
             
             // Filter by category
             if (activeCategory !== 'all') {
-                filtered = filtered.filter(p => p.category === activeCategory);
+                filtered = filtered.filter(p => 
+                    p.category && p.category.toLowerCase() === activeCategory.toLowerCase()
+                );
             }
             
             // Sort
             switch (sortBy) {
                 case 'popular':
-                    filtered.sort((a, b) => b.views - a.views);
+                    filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
                     break;
                 case 'newest':
-                    filtered.sort((a, b) => b.isNew - a.isNew);
+                    filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
                     break;
                 case 'price-low':
-                    filtered.sort((a, b) => a.price - b.price);
+                    filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
                     break;
                 case 'price-high':
-                    filtered.sort((a, b) => b.price - a.price);
+                    filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
                     break;
             }
             
@@ -675,9 +659,45 @@
 
         // Update stats
         function updateStats() {
-            const totalViews = products.reduce((sum, p) => sum + p.views, 0);
+            const totalViews = products.reduce((sum, p) => sum + (p.views || 0), 0);
             totalViewsEl.textContent = formatNumber(totalViews);
             productCountEl.textContent = products.length;
+        }
+
+        // Fetch products from API
+        async function fetchProducts() {
+            try {
+                productsGrid.innerHTML = `
+                    <div class="loading" style="grid-column: 1/-1;">
+                        <div class="spinner"></div>
+                        <div>Loading viral finds...</div>
+                    </div>
+                `;
+
+                const response = await fetch(CONFIG.apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error('API error');
+                }
+
+                const data = await response.json();
+                
+                if (data.success && data.products && data.products.length > 0) {
+                    products = data.products;
+                } else {
+                    // Use fallback products if API returns empty
+                    products = CONFIG.fallbackProducts;
+                }
+
+                updateStats();
+                renderProducts();
+
+            } catch (error) {
+                console.log('API unavailable, using fallback products');
+                products = CONFIG.fallbackProducts;
+                updateStats();
+                renderProducts();
+            }
         }
 
         // Event: Category click
@@ -697,15 +717,7 @@
         });
 
         // Initialize
-        function init() {
-            // In production, fetch products from Google Sheets API here
-            // For now, using sample products
-            updateStats();
-            renderProducts();
-        }
-
-        // Start
-        init();
+        fetchProducts();
     </script>
 </body>
 </html>
