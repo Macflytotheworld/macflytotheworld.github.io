@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parabéns! – Bem-vindo ao Sistema TikTok Automático</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #fe2c55;
+      --dark: #0a0a0a;
+      --darker: #050505;
+      --light: #ffffff;
+      --gray: #a1a1aa;
+      --gray-dark: #27272a;
+      --success: #22c55e;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--success), #16a34a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      margin: 0 auto 32px;
+      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.3);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--success), #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--gray-dark);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    
+    .card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .steps-list {
+      list-style: none;
+    }
+    
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-dark);
+    }
+    
+    .steps-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .step-content p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 50px rgba(37, 211, 102, 0.4);
+    }
+    
+    .cta-button::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    
+    .note {
+      margin-top: 32px;
+      padding: 20px;
+      background: rgba(254, 44, 85, 0.1);
+      border: 1px solid rgba(254, 44, 85, 0.2);
+      border-radius: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .note strong {
+      color: var(--primary);
+    }
+    
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+    
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: var(--light);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="success-icon">✓</div>
+    
+    <h1>Parabéns! Pagamento Confirmado</h1>
+    <p class="subtitle">
+      Bem-vindo ao Sistema TikTok Automático! A tua jornada para crescer 
+      no TikTok começa agora.
+    </p>
+    
+    <div class="card">
+      <h2>📋 Próximos Passos</h2>
+      
+      <ul class="steps-list">
+        <li>
+          <span class="step-number">1</span>
+          <div class="step-content">
+            <h3>Junta-te ao Grupo WhatsApp</h3>
+            <p>Clica no botão abaixo para entrar no grupo exclusivo de alunos onde partilhamos dicas diárias.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div class="step-content">
+            <h3>Verifica o teu email</h3>
+            <p>Enviámos os dados de acesso ao sistema e aos bónus para o email que usaste na compra.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div class="step-content">
+            <h3>Agenda a Sessão de Onboarding</h3>
+            <p>Vais receber um link para agendar a tua primeira sessão de mentoria em grupo.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <div class="step-content">
+            <h3>Começa pelo Módulo 1</h3>
+            <p>Acede ao curso e começa pela configuração inicial. Demora apenas 15 minutos.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://wa.me/351912345678?text=Ol%C3%A1!%20Acabei%20de%20comprar%20o%20Sistema%20TikTok%20Autom%C3%A1tico.%20Podem%20adicionar-me%20ao%20grupo%3F" class="cta-button" target="_blank">
+      Entrar no Grupo VIP
+    </a>
+    
+    <div class="note">
+      <strong>⚠️ Importante:</strong> Se não receberes o email em 5 minutos, verifica a pasta de spam. 
+      Se ainda assim não encontrares, entra em contacto connosco pelo WhatsApp.
+    </div>
+    
+    <footer>
+      <p>
+        © 2024 Macfly System<br>
+        <a href="mailto:macflytotheworld@gmail.com">Contacto: macflytotheworld@gmail.com</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

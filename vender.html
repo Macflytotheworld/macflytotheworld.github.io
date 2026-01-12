@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema TikTok Automático – De 0 a 10K Seguidores em 30 Dias</title>
+  <meta name="description" content="O sistema completo que automatiza a criação e publicação de vídeos virais no TikTok. Resultados garantidos ou dinheiro de volta." />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sistema TikTok Automático – Cresça no TikTok no Piloto Automático" />
+  <meta property="og:description" content="Descobre como criadores estão a crescer 10x mais rápido com automação inteligente." />
+  <meta property="og:type" content="website" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #fe2c55;
+      --primary-dark: #d91a40;
+      --dark: #0a0a0a;
+      --darker: #050505;
+      --light: #ffffff;
+      --gray: #a1a1aa;
+      --gray-dark: #27272a;
+      --success: #22c55e;
+      --gold: #fbbf24;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Announcement Bar */
+    .announcement {
+      background: linear-gradient(90deg, var(--primary), #ff6b35);
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .announcement span {
+      background: rgba(0,0,0,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-right: 8px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: 
+        radial-gradient(ellipse at top, rgba(254, 44, 85, 0.15), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(37, 99, 235, 0.1), transparent 50%),
+        var(--darker);
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(254, 44, 85, 0.1);
+      border: 1px solid rgba(254, 44, 85, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    
+    .badge::before {
+      content: '🔥';
+    }
+    
+    h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 span {
+      background: linear-gradient(135deg, var(--primary), #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Video Placeholder */
+    .video-container {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(254, 44, 85, 0.3);
+    }
+    
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, #1f1f3a, #1a2745);
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(254, 44, 85, 0.5);
+      transition: transform 0.3s ease;
+    }
+    
+    .play-button:hover {
+      transform: scale(1.1);
+    }
+    
+    .play-button::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    }
+    
+    .video-text {
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    /* CTA Button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(254, 44, 85, 0.4);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 50px rgba(254, 44, 85, 0.5);
+    }
+    
+    .cta-button::after {
+      content: '→';
+      font-size: 20px;
+    }
+    
+    .guarantee-text {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .guarantee-text::before {
+      content: '✓';
+      color: var(--success);
+    }
+    
+    /* Social Proof */
+    .social-proof {
+      padding: 60px 20px;
+      background: var(--dark);
+    }
+    
+    .proof-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .proof-item h3 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .proof-item p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    /* Problem Section */
+    .problem {
+      padding: 100px 20px;
+      background: var(--darker);
+    }
+    
+    .section-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .section-tag {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    
+    h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .problem-list {
+      list-style: none;
+      margin-top: 40px;
+    }
+    
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--gray-dark);
+    }
+    
+    .problem-list li::before {
+      content: '❌';
+      font-size: 20px;
+    }
+    
+    .problem-list li strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    
+    .problem-list li span {
+      color: var(--gray);
+      font-size: 15px;
+    }
+    
+    /* Solution Section */
+    .solution {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, var(--dark), var(--darker));
+    }
+    
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    @media (max-width: 768px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .solution-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--gray-dark);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    
+    .solution-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .solution-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(254, 44, 85, 0.05));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .solution-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .solution-card p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+    
+    /* What You Get */
+    .offer {
+      padding: 100px 20px;
+      background: var(--darker);
+    }
+    
+    .offer-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(254, 44, 85, 0.02));
+      border: 2px solid var(--primary);
+      border-radius: 24px;
+      padding: 50px;
+    }
+    
+    .offer-list {
+      list-style: none;
+      margin: 40px 0;
+    }
+    
+    .offer-list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      font-size: 17px;
+    }
+    
+    .offer-list li::before {
+      content: '✓';
+      width: 28px;
+      height: 28px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .offer-list li span {
+      color: var(--gray);
+      font-size: 14px;
+      margin-left: 8px;
+    }
+    
+    .price-box {
+      text-align: center;
+      padding: 40px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 16px;
+      margin-top: 40px;
+    }
+    
+    .price-original {
+      font-size: 24px;
+      color: var(--gray);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+    
+    .price-current {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+    
+    .price-current span {
+      font-size: 24px;
+      vertical-align: super;
+    }
+    
+    .price-note {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 20px;
+      background: var(--dark);
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 50px auto 0;
+    }
+    
+    @media (max-width: 768px) {
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--gray-dark);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    
+    .testimonial-text {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), #ff6b35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--gray);
+    }
+    
+    /* FAQ */
+    .faq {
+      padding: 100px 20px;
+      background: var(--darker);
+    }
+    
+    .faq-list {
+      max-width: 700px;
+      margin: 50px auto 0;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--gray-dark);
+      padding: 24px 0;
+    }
+    
+    .faq-question {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--primary);
+    }
+    
+    .faq-answer {
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    
+    /* Final CTA */
+    .final-cta {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, var(--dark), var(--darker));
+      text-align: center;
+    }
+    
+    .final-cta h2 {
+      margin-bottom: 16px;
+    }
+    
+    .final-cta p {
+      color: var(--gray);
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .urgency-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 12px 24px;
+      border-radius: 50px;
+      margin-bottom: 30px;
+      font-size: 14px;
+      color: var(--gold);
+    }
+    
+    .urgency-box::before {
+      content: '⚡';
+    }
+    
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      background: var(--darker);
+      border-top: 1px solid var(--gray-dark);
+      text-align: center;
+    }
+    
+    footer p {
+      color: var(--gray);
+      font-size: 13px;
+    }
+    
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: var(--light);
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Sticky CTA Mobile */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark);
+      padding: 16px 20px;
+      border-top: 1px solid var(--gray-dark);
+      z-index: 100;
+    }
+    
+    @media (max-width: 768px) {
+      .sticky-cta {
+        display: block;
+      }
+      
+      .sticky-cta .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement">
+    <span>🎁 OFERTA ESPECIAL</span>
+    Últimas 5 vagas com 60% de desconto – Termina em breve
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">Novo Sistema 2024 – Resultados Comprovados</div>
+      
+      <h1>
+        Cresce no TikTok com<br>
+        <span>Automação Inteligente</span><br>
+        (Sem Criar Conteúdo)
+      </h1>
+      
+      <p class="hero-subtitle">
+        O sistema completo que automatiza a criação, edição e publicação de vídeos virais. 
+        Resultados em 7 dias ou dinheiro de volta.
+      </p>
+      
+      <!-- Video -->
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="play-button"></div>
+          <span class="video-text">Vê como funciona em 3 minutos</span>
+        </div>
+      </div>
+      
+      <a href="aplicar.html" class="cta-button">
+        Quero Acesso ao Sistema
+      </a>
+      
+      <p class="guarantee-text">
+        Garantia de 14 dias – Se não tiveres resultados, devolvemos o dinheiro
+      </p>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="proof-grid">
+      <div class="proof-item">
+        <h3>147+</h3>
+        <p>Criadores a usar</p>
+      </div>
+      <div class="proof-item">
+        <h3>2.3M</h3>
+        <p>Views geradas</p>
+      </div>
+      <div class="proof-item">
+        <h3>89%</h3>
+        <p>Taxa de sucesso</p>
+      </div>
+      <div class="proof-item">
+        <h3>4.9★</h3>
+        <p>Avaliação média</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem">
+    <div class="section-container">
+      <span class="section-tag">O Problema</span>
+      <h2>Porque é que 97% dos criadores falham no TikTok?</h2>
+      <p style="color: var(--gray); font-size: 17px;">
+        Não é falta de talento. É falta de sistema.
+      </p>
+      
+      <ul class="problem-list">
+        <li>
+          <div>
+            <strong>Passas horas a criar conteúdo que ninguém vê</strong>
+            <span>O algoritmo ignora-te porque não tens consistência nem timing certo.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Não sabes que tipo de vídeos viralizam no teu nicho</strong>
+            <span>Tentas de tudo, mas nada funciona porque não tens dados reais.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Não tens tempo para postar todos os dias</strong>
+            <span>A tua vida não permite criar 3 vídeos por dia manualmente.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>A concorrência está a crescer e tu estás parado</strong>
+            <span>Enquanto hesitas, outros estão a dominar o teu nicho com sistemas.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="solution">
+    <div class="section-container">
+      <span class="section-tag">A Solução</span>
+      <h2>Apresentamos o Sistema TikTok Automático</h2>
+      <p style="color: var(--gray); font-size: 17px;">
+        A única ferramenta que automatiza TODO o processo de crescimento no TikTok.
+      </p>
+      
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="solution-icon">🎯</div>
+          <h3>Análise de Tendências</h3>
+          <p>O sistema identifica automaticamente que tipo de conteúdo está a viralizar no teu nicho específico.</p>
+        </div>
+        
+        <div class="solution-card">
+          <div class="solution-icon">🎬</div>
+          <h3>Criação Automática</h3>
+          <p>Gera vídeos com IA – legendas, edição, música trending – tudo no piloto automático.</p>
+        </div>
+        
+        <div class="solution-card">
+          <div class="solution-icon">📅</div>
+          <h3>Publicação Programada</h3>
+          <p>Agenda e publica nos melhores horários para máximo alcance, 24/7 sem tocar no telemóvel.</p>
+        </div>
+        
+        <div class="solution-card">
+          <div class="solution-icon">📊</div>
+          <h3>Analytics Avançado</h3>
+          <p>Vê exatamente o que funciona e duplica os resultados com dados em tempo real.</p>
+        </div>
+        
+        <div class="solution-card">
+          <div class="solution-icon">🧠</div>
+          <h3>Mentoria Incluída</h3>
+          <p>Acesso direto a especialistas que já geraram milhões de views para te guiar.</p>
+        </div>
+        
+        <div class="solution-card">
+          <div class="solution-icon">🔄</div>
+          <h3>Templates Prontos</h3>
+          <p>+50 templates de vídeos virais que podes usar imediatamente no teu nicho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get -->
+  <section class="offer">
+    <div class="offer-box">
+      <span class="section-tag" style="text-align: center; display: block;">O Que Recebes</span>
+      <h2 style="text-align: center;">Tudo Incluído no Pacote</h2>
+      
+      <ul class="offer-list">
+        <li>
+          Acesso Vitalício ao Sistema Macfly <span>(Valor: €997)</span>
+        </li>
+        <li>
+          Mentoria em Grupo – 4 Sessões ao Vivo <span>(Valor: €497)</span>
+        </li>
+        <li>
+          +50 Templates de Vídeos Virais <span>(Valor: €197)</span>
+        </li>
+        <li>
+          Guia de Monetização TikTok <span>(Valor: €147)</span>
+        </li>
+        <li>
+          Suporte via WhatsApp por 90 Dias <span>(Valor: €297)</span>
+        </li>
+        <li>
+          Bónus: Curso de Edição com CapCut <span>(Valor: €97)</span>
+        </li>
+        <li>
+          Bónus: Scripts de Hooks Virais <span>(Valor: €47)</span>
+        </li>
+      </ul>
+      
+      <div class="price-box">
+        <div class="price-original">De €2.279</div>
+        <div class="price-current"><span>€</span>497</div>
+        <p class="price-note">Pagamento único • Acesso vitalício • Garantia 14 dias</p>
+        <a href="aplicar.html" class="cta-button">
+          Garantir Minha Vaga Agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-container" style="text-align: center;">
+      <span class="section-tag">Resultados Reais</span>
+      <h2>O Que Dizem Os Nossos Alunos</h2>
+    </div>
+    
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Em 3 semanas passei de 200 para 8.000 seguidores. O sistema faz tudo sozinho, 
+          só preciso de aprovar os vídeos. Já estou a monetizar!"
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MS</div>
+          <div>
+            <div class="testimonial-name">Maria Santos</div>
+            <div class="testimonial-role">Criadora de Conteúdo • Lisboa</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Tinha um negócio local sem presença online. Em 2 meses, o TikTok tornou-se 
+          o meu maior canal de clientes. ROI absurdo!"
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JP</div>
+          <div>
+            <div class="testimonial-name">João Pereira</div>
+            <div class="testimonial-role">Dono de Restaurante • Porto</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "A mentoria fez toda a diferença. Não é só ferramenta, é estratégia. 
+          Primeiro vídeo viral com 500K views no primeiro mês."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AC</div>
+          <div>
+            <div class="testimonial-name">Ana Costa</div>
+            <div class="testimonial-role">Coach de Fitness • Braga</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-container" style="text-align: center;">
+      <span class="section-tag">Perguntas Frequentes</span>
+      <h2>Dúvidas? Nós Respondemos</h2>
+    </div>
+    
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">Preciso de saber editar vídeos?</div>
+        <p class="faq-answer">
+          Não! O sistema gera vídeos automaticamente. Só precisas de aprovar antes de publicar. 
+          Mas se quiseres personalizar, incluímos um curso completo de edição.
+        </p>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Funciona para qualquer nicho?</div>
+        <p class="faq-answer">
+          Sim. Temos alunos em fitness, culinária, finanças, humor, negócios locais, 
+          moda e muito mais. O sistema adapta-se ao teu mercado.
+        </p>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">E se não funcionar para mim?</div>
+        <p class="faq-answer">
+          Tens 14 dias de garantia total. Se seguires o método e não tiveres resultados, 
+          devolvemos 100% do valor sem perguntas.
+        </p>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Quanto tempo demora a ver resultados?</div>
+        <p class="faq-answer">
+          A maioria dos alunos vê os primeiros resultados em 7-14 dias. Crescimento 
+          significativo geralmente acontece nas primeiras 4-6 semanas.
+        </p>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Posso pagar em prestações?</div>
+        <p class="faq-answer">
+          Sim! Oferecemos opção de pagamento em 3x sem juros. 
+          Fala connosco no WhatsApp para ativar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="urgency-box">
+      Apenas 5 vagas restantes a este preço
+    </div>
+    
+    <h2>Pronto Para Explodir no TikTok?</h2>
+    <p>
+      Junta-te aos 147+ criadores que já estão a crescer no piloto automático. 
+      Daqui a 30 dias, podes estar com 10K+ seguidores.
+    </p>
+    
+    <a href="aplicar.html" class="cta-button">
+      Sim, Quero Começar Hoje
+    </a>
+    
+    <p class="guarantee-text" style="margin-top: 20px;">
+      Pagamento seguro • Garantia de 14 dias • Suporte em português
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      © 2024 Macfly System. Todos os direitos reservados.<br>
+      <a href="privacy.html">Política de Privacidade</a> • 
+      <a href="terms.html">Termos de Serviço</a> • 
+      <a href="mailto:macflytotheworld@gmail.com">Contacto</a>
+    </p>
+  </footer>
+
+  <!-- Sticky CTA Mobile -->
+  <div class="sticky-cta">
+    <a href="aplicar.html" class="cta-button">
+      Garantir Minha Vaga – €497
+    </a>
+  </div>
+
+</body>
+</html>
