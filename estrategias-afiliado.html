@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégias para Afiliados Amazon | MACFLY WORLD</title>
+    <meta name="description" content="Guia completo com as melhores estratégias para vender produtos da Amazon como afiliado. Aumente suas comissões com técnicas comprovadas.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --accent-orange: #ff9500;
+            --accent-gold: #ffd700;
+            --accent-pink: #ff0050;
+            --accent-purple: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #ff9500, #ffd700);
+            --gradient-amazon: linear-gradient(135deg, #ff9900, #ffad33);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, rgba(255, 153, 0, 0.15) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gradient-amazon);
+            color: #000;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Introduction */
+        .intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-amazon);
+        }
+
+        .intro h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .intro p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Strategy Cards */
+        .strategies {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 20px 40px rgba(255, 153, 0, 0.15);
+        }
+
+        .strategy-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-amazon);
+            color: #000;
+            font-weight: 800;
+            font-size: 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .strategy-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .strategy-card p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .tips-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .tips-list li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tips-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.1), rgba(255, 215, 0, 0.1));
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--accent-orange);
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Platform Cards */
+        .platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .platform-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            border-color: var(--accent-orange);
+            transform: scale(1.02);
+        }
+
+        .platform-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .platform-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Commission Table */
+        .commission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .commission-table th,
+        .commission-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .commission-table th {
+            background: var(--bg-secondary);
+            color: var(--accent-orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .commission-table tr:hover {
+            background: rgba(255, 153, 0, 0.05);
+        }
+
+        .commission-rate {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-amazon);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            color: #000;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .strategy-card {
+                padding: 24px;
+            }
+
+            .intro {
+                padding: 24px;
+            }
+
+            .cta-section {
+                padding: 32px 24px;
+            }
+
+            .platforms {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <span class="badge">📚 Guia Completo</span>
+            <h1>Estratégias para Afiliados Amazon</h1>
+            <p class="subtitle">Descubra as melhores formas de vender produtos da Amazon e aumentar suas comissões como afiliado</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <a href="index.html" class="back-link">← Voltar para Home</a>
+
+        <!-- Introduction -->
+        <section class="intro">
+            <h2>🎯 Por que ser Afiliado Amazon?</h2>
+            <p>O Programa de Associados da Amazon é um dos programas de afiliados mais populares e confiáveis do mundo. Com milhões de produtos disponíveis, você pode ganhar comissões de <strong>1% a 20%</strong> dependendo da categoria do produto. A grande vantagem é que você recebe comissão por <em>qualquer produto</em> que o cliente comprar nas próximas 24 horas após clicar no seu link!</p>
+        </section>
+
+        <!-- Strategies -->
+        <div class="strategies">
+            <!-- Strategy 1 -->
+            <article class="strategy-card">
+                <span class="strategy-number">1</span>
+                <h3>📱 TikTok e Reels (Vídeos Curtos)</h3>
+                <p>Vídeos curtos são a <strong>forma mais eficaz</strong> de vender produtos como afiliado atualmente. O formato "TikTok Made Me Buy It" explodiu em popularidade.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Mostre o produto em ação</strong> - Demonstre como funciona em 15-60 segundos</li>
+                    <li><strong>Use hooks poderosos</strong> - "Esse produto mudou minha vida" ou "Não acredito que isso custa só R$..."</li>
+                    <li><strong>Coloque "Link na bio"</strong> ou use ferramentas como Linktree para seus links de afiliado</li>
+                    <li><strong>Responda comentários com "LINK"</strong> - Envie o link diretamente no DM</li>
+                    <li><strong>Faça unboxings</strong> - Pessoas adoram ver a experiência completa</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Crie uma série de vídeos com tema específico: "5 achados da Amazon abaixo de R$50", "Gadgets que você não sabia que precisava", etc.</p>
+                </div>
+
+                <div class="platforms">
+                    <div class="platform-card">
+                        <div class="platform-icon">📱</div>
+                        <div class="platform-name">TikTok</div>
+                        <div class="platform-desc">Maior alcance orgânico</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">📸</div>
+                        <div class="platform-name">Instagram Reels</div>
+                        <div class="platform-desc">Público engajado</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">▶️</div>
+                        <div class="platform-name">YouTube Shorts</div>
+                        <div class="platform-desc">Monetização dupla</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">🎬</div>
+                        <div class="platform-name">Kwai</div>
+                        <div class="platform-desc">Crescimento rápido BR</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Strategy 2 -->
+            <article class="strategy-card">
+                <span class="strategy-number">2</span>
+                <h3>📝 Blog e SEO</h3>
+                <p>Criar conteúdo otimizado para buscadores é uma estratégia de <strong>longo prazo</strong> que gera renda passiva consistente.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Reviews detalhados</strong> - "Review [Produto]: Vale a Pena em 2024?"</li>
+                    <li><strong>Comparativos</strong> - "[Produto A] vs [Produto B]: Qual escolher?"</li>
+                    <li><strong>Listas "Melhores de"</strong> - "10 Melhores Fones Bluetooth até R$200"</li>
+                    <li><strong>Tutoriais com produtos</strong> - "Como montar um setup gamer barato"</li>
+                    <li><strong>Foque em palavras-chave de compra</strong> - "melhor", "comprar", "vale a pena"</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Use ferramentas como Ubersuggest ou Google Keyword Planner para encontrar palavras-chave com intenção de compra e baixa concorrência.</p>
+                </div>
+            </article>
+
+            <!-- Strategy 3 -->
+            <article class="strategy-card">
+                <span class="strategy-number">3</span>
+                <h3>📺 YouTube (Vídeos Longos)</h3>
+                <p>Reviews e unboxings no YouTube têm <strong>alta taxa de conversão</strong> porque os espectadores já estão pesquisando antes de comprar.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Reviews honestos</strong> - Mostre prós e contras para ganhar confiança</li>
+                    <li><strong>Unboxings detalhados</strong> - Primeiras impressões são muito buscadas</li>
+                    <li><strong>Comparativos lado a lado</strong> - Ajude na decisão de compra</li>
+                    <li><strong>Tutoriais de uso</strong> - "Como usar [produto] - Guia Completo"</li>
+                    <li><strong>Coloque links na descrição</strong> - Organize por timestamps</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Fixe um comentário com os links dos produtos mencionados no vídeo. Muitos espectadores vão direto nos comentários!</p>
+                </div>
+            </article>
+
+            <!-- Strategy 4 -->
+            <article class="strategy-card">
+                <span class="strategy-number">4</span>
+                <h3>💬 Grupos e Comunidades</h3>
+                <p>Participe ativamente de comunidades relacionadas ao seu nicho e ajude as pessoas com recomendações genuínas.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Grupos do Facebook</strong> - Nicho específico (mães, gamers, pets, etc.)</li>
+                    <li><strong>Reddit</strong> - Subs de recomendações e reviews</li>
+                    <li><strong>Discord</strong> - Comunidades engajadas</li>
+                    <li><strong>Telegram</strong> - Grupos de ofertas e promoções</li>
+                    <li><strong>Quora</strong> - Responda perguntas sobre produtos</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>⚠️ Importante</h4>
+                    <p>Sempre agregue valor primeiro! Não faça spam. Construa reputação ajudando genuinamente, e as vendas virão naturalmente.</p>
+                </div>
+            </article>
+
+            <!-- Strategy 5 -->
+            <article class="strategy-card">
+                <span class="strategy-number">5</span>
+                <h3>📧 Email Marketing</h3>
+                <p>Construir uma lista de emails é ter um ativo próprio. Você pode promover produtos repetidamente para pessoas interessadas.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Crie um lead magnet</strong> - Ebook, checklist ou guia gratuito</li>
+                    <li><strong>Envie newsletters com recomendações</strong> - "Achados da semana"</li>
+                    <li><strong>Sequências automatizadas</strong> - Apresente produtos ao longo do tempo</li>
+                    <li><strong>Alertas de ofertas</strong> - Black Friday, Prime Day, etc.</li>
+                    <li><strong>Segmente sua lista</strong> - Envie produtos relevantes para cada interesse</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Use ferramentas gratuitas como Mailchimp ou MailerLite para começar. A taxa de conversão de email é muito superior às redes sociais!</p>
+                </div>
+            </article>
+
+            <!-- Strategy 6 -->
+            <article class="strategy-card">
+                <span class="strategy-number">6</span>
+                <h3>📌 Pinterest</h3>
+                <p>Pinterest é um <strong>mecanismo de busca visual</strong> subestimado. Pins podem gerar tráfego por anos!</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Crie pins atrativos</strong> - Use Canva para designs profissionais</li>
+                    <li><strong>Boards temáticos</strong> - "Decoração de Escritório", "Presentes Criativos"</li>
+                    <li><strong>Descrições otimizadas</strong> - Use palavras-chave relevantes</li>
+                    <li><strong>Link para seu blog ou landing page</strong> - Não diretamente para Amazon</li>
+                    <li><strong>Consistência</strong> - Poste vários pins por dia usando Tailwind</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Pins de "Gift Guides" (guias de presente) performam muito bem em datas comemorativas como Natal, Dia das Mães, etc.</p>
+                </div>
+            </article>
+
+            <!-- Strategy 7 -->
+            <article class="strategy-card">
+                <span class="strategy-number">7</span>
+                <h3>🎙️ Storefront da Amazon</h3>
+                <p>Crie sua própria <strong>loja personalizada</strong> dentro da Amazon com seus produtos favoritos organizados.</p>
+                
+                <ul class="tips-list">
+                    <li><strong>Amazon Influencer Program</strong> - Tenha sua própria página na Amazon</li>
+                    <li><strong>Organize por categorias</strong> - Facilite a navegação</li>
+                    <li><strong>Listas temáticas</strong> - "Meu Setup", "Favoritos de Skincare"</li>
+                    <li><strong>Compartilhe o link único</strong> - Uma URL para todos seus produtos</li>
+                    <li><strong>Shoppable videos</strong> - Videos com produtos tagueados diretamente</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Dica Pro</h4>
+                    <p>Para entrar no Amazon Influencer Program, você precisa ter uma presença em redes sociais. Quanto mais seguidores, maior a chance de aprovação!</p>
+                </div>
+            </article>
+
+            <!-- Commission Table -->
+            <article class="strategy-card">
+                <span class="strategy-number">💰</span>
+                <h3>Taxas de Comissão por Categoria</h3>
+                <p>Conheça as comissões de cada categoria para focar nos produtos mais lucrativos:</p>
+                
+                <table class="commission-table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Comissão</th>
+                            <th>Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🎮 Games</td>
+                            <td class="commission-rate">1%</td>
+                            <td>Volume alto compensa</td>
+                        </tr>
+                        <tr>
+                            <td>📱 Eletrônicos</td>
+                            <td class="commission-rate">3%</td>
+                            <td>Ticket médio alto</td>
+                        </tr>
+                        <tr>
+                            <td>🏠 Casa e Cozinha</td>
+                            <td class="commission-rate">8%</td>
+                            <td>Excelente para iniciantes</td>
+                        </tr>
+                        <tr>
+                            <td>💄 Beleza</td>
+                            <td class="commission-rate">10%</td>
+                            <td>Alto volume de compras</td>
+                        </tr>
+                        <tr>
+                            <td>👗 Moda</td>
+                            <td class="commission-rate">10%</td>
+                            <td>Compras recorrentes</td>
+                        </tr>
+                        <tr>
+                            <td>🐕 Pets</td>
+                            <td class="commission-rate">8%</td>
+                            <td>Nicho apaixonado</td>
+                        </tr>
+                        <tr>
+                            <td>📚 Livros</td>
+                            <td class="commission-rate">4.5%</td>
+                            <td>Fácil de recomendar</td>
+                        </tr>
+                        <tr>
+                            <td>🏋️ Esportes</td>
+                            <td class="commission-rate">6%</td>
+                            <td>Nicho em crescimento</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <h4>💡 Estratégia Inteligente</h4>
+                    <p>Combine produtos de alta comissão (beleza, moda) com produtos de alto ticket (eletrônicos) para maximizar seus ganhos!</p>
+                </div>
+            </article>
+
+            <!-- Final Tips -->
+            <article class="strategy-card">
+                <span class="strategy-number">⭐</span>
+                <h3>Dicas Finais para o Sucesso</h3>
+                
+                <ul class="tips-list">
+                    <li><strong>Seja autêntico</strong> - Recomende apenas produtos que você realmente usaria</li>
+                    <li><strong>Foque em um nicho</strong> - Especialistas convertem mais que generalistas</li>
+                    <li><strong>Aproveite datas sazonais</strong> - Prime Day, Black Friday, Natal</li>
+                    <li><strong>Use links curtos</strong> - amzn.to parece mais confiável</li>
+                    <li><strong>Divulgue que é afiliado</strong> - Transparência gera confiança (e é obrigatório!)</li>
+                    <li><strong>Analise seus relatórios</strong> - Veja quais produtos e conteúdos convertem melhor</li>
+                    <li><strong>Teste diferentes formatos</strong> - O que funciona para um pode não funcionar para outro</li>
+                    <li><strong>Seja consistente</strong> - Resultados vêm com tempo e dedicação</li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>🚀 Pronto para Começar?</h2>
+            <p>Aplique essas estratégias e comece a construir sua renda como afiliado Amazon hoje!</p>
+            <a href="index.html" class="cta-button">
+                <span>Ver Produtos em Alta</span>
+                <span>→</span>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            <strong>MACFLY WORLD</strong> | 
+            <a href="index.html">Home</a> · 
+            <a href="privacy.html">Privacidade</a> · 
+            <a href="terms.html">Termos</a>
+        </p>
+        <p style="margin-top: 12px;">
+            🔗 Como Associado Amazon, ganhamos comissões por compras qualificadas.
+        </p>
+    </footer>
+</body>
+</html>
